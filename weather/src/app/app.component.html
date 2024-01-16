@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <h1 class="text-center border border-primary rounded-2 mb-3 text-dark p-1">
+    Awesome Weather Service
+  </h1>
+  <form [formGroup]="weatherAppForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row mb-3">
+      <label for="country" class="col-sm-2 col-form-label">Country</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="country"
+          id="country"
+          placeholder="Enter country"
+        />
+        <span
+          *ngIf="
+            !weatherAppForm.get('country').valid &&
+            weatherAppForm.get('country').touched
+          "
+          class="form-text text-danger"
+          >Please enter a country</span
+        >
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="city" class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="city"
+          id="city"
+          placeholder="Enter city"
+        />
+        <span
+          *ngIf="
+            !weatherAppForm.get('city').valid &&
+            weatherAppForm.get('city').touched
+          "
+          class="form-text text-danger"
+          >Please enter a city</span
+        >
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="apikey" class="col-sm-2 col-form-label">Api Key</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="apikey"
+          id="apikey"
+          placeholder="Enter Api Key"
+        />
+        <span
+          *ngIf="
+            !weatherAppForm.get('apikey').valid &&
+            weatherAppForm.get('apikey').touched
+          "
+          class="form-text text-danger"
+          >Please enter an Api Key</span
+        >
+      </div>
+    </div>
+    <hr class="mt-5" />
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-primary btn-lg">
+          Get my weather
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="row mt-5 d-flex justify-content-center">
+    <div *ngIf="weatherDescription" class="col-sm-10 alert alert-success">
+      <p>{{ weatherDescription }} in {{ city }}, {{ country }}</p>
+    </div>
+    <div *ngIf="error" class="col-sm-10 alert alert-danger">
+      <h2 class="text-uppercase">Error</h2>
+      <p>{{ error }}</p>
+      <button class="btn btn-danger" (click)="onHandleError()">Ok</button>
+    </div>
+  </div>
+</div>
