@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
           this.weatherDescription = response;
         },
         error: (error) => {
-          console.log(error);
           if (error.error && error.error.Message) {
             this.error = error.error.Message;
           } else {
